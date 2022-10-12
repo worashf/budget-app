@@ -1,4 +1,4 @@
 class SpendingCategory < ApplicationRecord
   belongs_to :category
-  belongs_to :spendding
+  belongs_to :spending
 end
