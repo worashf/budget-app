@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_195005) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_200557) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,22 +23,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_195005) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "spenddings", force: :cascade do |t|
+  create_table "spending_categories", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "spending_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_spending_categories_on_category_id"
+    t.index ["spending_id"], name: "index_spending_categories_on_spending_id"
+  end
+
+  create_table "spendings", force: :cascade do |t|
     t.string "name"
     t.decimal "amount", default: "0.0"
     t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_spenddings_on_author_id"
-  end
-
-  create_table "spending_categories", force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "spendding_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_spending_categories_on_category_id"
-    t.index ["spendding_id"], name: "index_spending_categories_on_spendding_id"
+    t.index ["author_id"], name: "index_spendings_on_author_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_195005) do
   end
 
   add_foreign_key "categories", "users"
-  add_foreign_key "spenddings", "users", column: "author_id"
   add_foreign_key "spending_categories", "categories"
-  add_foreign_key "spending_categories", "spenddings"
+  add_foreign_key "spending_categories", "spendings"
+  add_foreign_key "spendings", "users", column: "author_id"
 end
