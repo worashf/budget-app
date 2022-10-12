@@ -1,0 +1,16 @@
+
+<section class="container">
+<%= link_to "New Category ", new_category_path%>
+<%if !@categories.empty? %>
+ <%@categories.each  do  |cat|%>
+<div class="d-flex">
+<%= link_to category_path(cat)  do %>
+<img src =<%= cat.icon %> class= "icon" />
+<%= cat.name%>
+<%end%>
+</div>
+ <%end%>
+ <% else%>
+ <h3 class="text-info"> No categories added yet </h3>
+ <% end%>
+</section>

@@ -1,0 +1,9 @@
+<section class="container mt-3">
+<%= form_with model: @category, class: "d-flex flex-column w-75 broder" do |f| %>
+<%= f.label :name, class: "text-primary mb-2" %>
+<%= f.text_field :name, class:"form-control mb-3", placeholder: "Enter category name"%>
+<%= f.label :icon, class: "text-primary mb-2"%>
+<%= f.text_field :icon, class: "form-control",placeholder: "Enter public image url"%>
+<%= f.submit "Save", class:"btn btn-primary"%>
+<%end%>
+</section>

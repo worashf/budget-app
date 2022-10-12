@@ -1,0 +1,7 @@
+<% if @spendings.present?%>
+<% @spendings.each do |s| %>
+<%= s.name%>
+ <%end%>
+<% else %>
+<h5>  no spending </h5>
+<% end%>
