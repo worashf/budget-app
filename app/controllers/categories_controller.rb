@@ -1,10 +1,26 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    if user_signed_in?
+      @page_title = 'Categories'
+      @categories = Category.where(user: current_user)
+      @total_spendings = Spending.where(author: current_user).sum(&:amount)
+      @category_total = 0
+      @categories.each do |cat|
+        @category_total = cat.spendings.sum(&:amount)
+      end
+      @category_total
+    else
+      @page_title = 'Welcome'
+      render 'publics/splash'
+    end
   end
 
   def new
     @category = Category.new
+    @page_title = 'New category'
+    @back = {
+      target: root_path
+    }
   end
 
   def create
@@ -27,7 +43,14 @@ class CategoriesController < ApplicationController
     @spendings = @category.spendings
   end
 
-  def destroy; end
+  def destroy
+    @category = Category.find(params[:id])
+    if @category.destroy
+      redirect_to categories_path, notice: 'Category deleted successfuly'
+    else
+      redirect_to categories_path, notice: 'Category not deleted '
+    end
+  end
 
   def update; end
 
