@@ -9,8 +9,12 @@
 </div>
  <div class ="row">
 
-<h5 class="text-center text-info"> All category total spendings <%= @category.category_total %> </h5>
+<h5 class="text-center text-info">  <%= "#{@category.name} total spendings(#{@category.category_total}) "%> </h5>
 <%if !@spendings.empty? %>
+<div class="d-flex cat-container">
+<img src =<%= @category.icon %> class= "icon" /> 
+ <p class="text-primary mx-2"><%= @category.name%> </p>
+</div>
  <%@spendings.each  do  |spend|%>
   <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
  <div class="d-flex mt-3 mx-2  align-items-center cat-container">
