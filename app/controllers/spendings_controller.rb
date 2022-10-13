@@ -16,7 +16,11 @@ class SpendingsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @spending = Spending.find(params[:id])
+    @cat_id = @spending.categories.first.id
+    redirect_to category_path(@cat_id) if @spending.destroy
+  end
 
   def update; end
 
