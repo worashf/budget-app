@@ -4,11 +4,6 @@ class CategoriesController < ApplicationController
       @page_title = 'Categories'.upcase
       @categories = Category.where(user: current_user).order(created_at: :desc)
       @total_spendings = Spending.where(author: current_user).sum(&:amount)
-      @category_total = 0
-      @categories.each do |cat|
-        @category_total = cat.spendings.sum(&:amount)
-      end
-      @category_total
     else
       @page_title = 'Welcome'
       render 'publics/splash'
