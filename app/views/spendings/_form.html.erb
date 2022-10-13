@@ -1,0 +1,18 @@
+
+<%=form_with model: spending do |f| %>
+ <%=f.label :name, class: "text-primary"%>
+ <%= f.text_field :name, class: "form-control", placeholder: "Enter paymnet name"%>
+ <%=f.label  :amount, class: "text-primary" %>
+ <%= f.number_field :amount, class: "form-control"%>
+<div class="categories ">
+<h4 class="text-center"> Select categories </h4>
+<% @categories.each do | category| %>
+<%= check_box_tag "spending[category_ids][]", category.id, spending.category_ids.include?(category.id), id: dom_id(category)%>
+<%= label_tag dom_id(category), category.name %><br>
+<%end%>
+</div>
+<div class ="d-flex">
+<%= f.submit "Save", class: "btn btn-primary"%>
+<%=link_to "Back",spendings_path %>
+</div>
+<% end %>
