@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   def index
     if user_signed_in?
       @page_title = 'Categories'
-      @categories = Category.where(user: current_user)
+      @categories = Category.where(user: current_user).order(created_at: :desc)
       @total_spendings = Spending.where(author: current_user).sum(&:amount)
       @category_total = 0
       @categories.each do |cat|
@@ -40,7 +40,11 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @spendings = @category.spendings
+    @spendings = @category.spendings.order(created_at: :desc)
+    @page_title = @category.name
+    @back = {
+      target: root_path
+    }
   end
 
   def destroy
