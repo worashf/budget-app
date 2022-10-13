@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     if user_signed_in?
-      @page_title = 'Categories'
+      @page_title = 'Categories'.upcase
       @categories = Category.where(user: current_user).order(created_at: :desc)
       @total_spendings = Spending.where(author: current_user).sum(&:amount)
       @category_total = 0
@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    @page_title = 'New category'
+    @page_title = 'New category'.upcase
     @back = {
       target: root_path
     }
@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @spendings = @category.spendings.order(created_at: :desc)
-    @page_title = @category.name
+    @page_title = "#{@category.name} Spendings".upcase
     @back = {
       target: root_path
     }
