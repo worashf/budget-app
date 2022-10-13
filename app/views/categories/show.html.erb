@@ -1,6 +1,10 @@
+<%= link_to "New Spending", new_spending_path %>
 <% if @spendings.present?%>
 <% @spendings.each do |s| %>
+<div class="d-flex">
 <%= s.name%>
+<%=s.amount %>
+</div>
  <%end%>
 <% else %>
 <h5>  no spending </h5>

@@ -2,8 +2,14 @@
 <%= form_with model: @category, class: "d-flex flex-column w-75 broder" do |f| %>
 <%= f.label :name, class: "text-primary mb-2" %>
 <%= f.text_field :name, class:"form-control mb-3", placeholder: "Enter category name"%>
+<div class="d-flex">
 <%= f.label :icon, class: "text-primary mb-2"%>
+   <em class="text-danger mx-5"> Add public image url! </em>
+</div>
 <%= f.text_field :icon, class: "form-control",placeholder: "Enter public image url"%>
+<div class="d-flex my-3">
 <%= f.submit "Save", class:"btn btn-primary"%>
+<%= link_to "Back", categories_path, class: "btn btn-primary mx-5"%>
+</div>
 <%end%>
 </section>
