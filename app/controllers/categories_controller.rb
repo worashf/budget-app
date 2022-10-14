@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
       @total_spendings = Spending.where(author: current_user).sum(&:amount)
     else
       @page_title = 'Welcome'
-      render 'publics/splash'
+      render 'devise/sessions/new'
     end
   end
 
