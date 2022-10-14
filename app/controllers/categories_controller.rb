@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
       @total_spendings = Spending.where(author: current_user).sum(&:amount)
     else
       @page_title = 'Welcome'
-      render 'devise/sessions/new'
+      render 'homes/index'
     end
   end
 
@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
     @category = Category.new
     @page_title = 'New category'.upcase
     @back = {
-      target: root_path
+      target: categories_path
     }
   end
 
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
     @spendings = @category.spendings.order(created_at: :desc)
     @page_title = "#{@category.name} Spendings".upcase
     @back = {
-      target: root_path
+      target: categories_path
     }
   end
 
