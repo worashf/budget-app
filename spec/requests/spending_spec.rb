@@ -5,7 +5,7 @@ RSpec.describe 'Spendings', type: :request do
     before(:example) { get '/spendings' }
 
     it 'it should redirect to user login page' do
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:ok)
     end
   end
 end
