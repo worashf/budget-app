@@ -16,7 +16,7 @@ class SpendingsController < ApplicationController
     if @spending.save
       redirect_to spendings_path, notice: 'Spending successfully created.'
     else
-      render :new, notice: 'Some thing went wrong'
+      render :new, notice: 'Some thing went wrong', status: :unprocessable_entity
     end
   end
 

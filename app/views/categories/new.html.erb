@@ -1,5 +1,16 @@
 <section class="container mt-3">
 <%= form_with model: @category, class: "d-flex flex-column w-75 broder" do |f| %>
+  <% if @category.errors.any? %>
+    <div style="color: red">
+      <h5><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h5>
+
+      <ul>
+        <% @category.errors.each do |error| %>
+          <li class="error-item"><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= f.label :name, class: "text-primary mb-2" %>
 <%= f.text_field :name, class:"form-control mb-3", placeholder: "Enter category name"%>
 <div class="d-flex">
