@@ -1,5 +1,9 @@
 class SpendingsController < ApplicationController
-  def index; end
+  def index
+    @spendings = Spending.where(author: current_user).order(created_at: :desc)
+    @total_spendings = Spending.where(author: current_user).sum(&:amount)
+    @page_title = 'Spendings'.upcase
+  end
 
   def new
     @spending = Spending.new
