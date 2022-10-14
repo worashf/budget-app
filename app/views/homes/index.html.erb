@@ -1,0 +1,30 @@
+<div class="splash">
+  <% if user_signed_in? %>            
+    <%=
+      link_to 'Go to Trasactions', categories_path,
+        class: 'btn btn-sm btn-outline-light btn-href',
+        role: 'button'
+    %>
+  <% else %>
+ <div class="card d-flex flex-column align-items-center mx-auto mt-5" style="width: 20rem; ">
+  <img class="card-img-top" src="https://s1.mzstatic.com/us/r30/Purple5/v4/51/17/a3/5117a35b-8133-4d54-e7a2-96d93f842b3e/pr_source.png?downloadKey=1412984390_66f150135a73f0424a11cc40f6d4113d" alt="Card image cap">
+  <div class="card-body">
+    <p class ="text-info"> Please sign-in to use the app </p>
+      <div class="d-flex">
+     <%=
+      link_to 'Sign In', user_session_path,
+        class: 'btn btn-primary'
+   
+    %>  
+      <%=
+      link_to 'Sign Up', new_user_registration_path,
+        class: 'btn btn-primary mx-5'
+     
+    %>  
+     </div>
+  </div>
+</div>
+ 
+        
+  <% end %>  
+</div>
