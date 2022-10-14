@@ -1,0 +1,31 @@
+
+  <div class="container-fluid ">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar1">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       
+    
+
+        <%  if user_signed_in? %>
+    <li class="nav-item">
+            <%= link_to "Categories",categories_path, class: "nav-link text-white " %>
+        </li>
+          <li class="nav-item">
+            <%= link_to "Spendings", spendings_path, class: "nav-link  text-white" %>
+        </li>
+          <li class="nav-item">
+            <%= button_to "#{current_user.name} (Logout) ",destroy_user_session_path, method: :delete, class: "btn text-white " %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign Up",new_user_registration_path, class: "nav-link text-white " %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign In",new_user_session_path, class: "nav-link text-white " %>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>

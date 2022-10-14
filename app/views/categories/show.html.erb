@@ -1,0 +1,37 @@
+
+
+
+
+<section class="container-fluid">
+<div class="d-flex justify-content-between mt-3 mx-5">
+ <h5 class ="text-primary"><%="Spendigs(#{@spendings.count})" %> </h5>
+<%= link_to "New Spending", new_spending_path, class: "btn btn-primary" %>
+</div>
+ <div class ="row">
+
+<h5 class="text-center text-info">  <%= "#{@category.name} total spendings(#{@category.category_total}) "%> </h5>
+<%if !@spendings.empty? %>
+<div class="d-flex cat-container">
+<img src =<%= @category.icon %> class= "icon" /> 
+ <p class="text-primary mx-2"><%= @category.name%> </p>
+</div>
+ <%@spendings.each  do  |spend|%>
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
+ <div class="d-flex mt-3 mx-2  align-items-center cat-container">
+
+<%= link_to spending_path(spend), class:"nav-link"  do %>  <p class="text-primary mx-2"><%= spend.name%> </p> <% end%>
+<p class="text-info">$<%= spend.amount %></p>
+ <p><%= button_to "Delete",  spend, method: :delete, class: 'btn btn-sm btn-danger mx-3'  %></p>
+    
+ <p><%= button_to "Edit",  spend, method: :put, class: 'btn btn-sm btn-secondary '  %></p>
+</div>
+
+</div>
+
+ <%end%>
+ <% else%>
+ <h3 class="text-info text-center mt-5"> No  spending added yet for this category </h3>
+ <% end%>
+
+</div>
+</section>

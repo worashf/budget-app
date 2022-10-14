@@ -1,0 +1,30 @@
+
+<section class="container-fluid">
+<div class="d-flex justify-content-between mt-3 mx-5">
+ <h5 class ="text-primary"><%="Categories(#{@categories.count})" %> </h5>
+<%= link_to "New Category ", new_category_path,class: "btn btn-primary"%>
+</div>
+ <div class ="row">
+
+<h5 class="text-center text-info"> All category total spendings <%= @total_spendings %> </h5>
+<%if !@categories.empty? %>
+ <%@categories.each  do  |cat|%>
+  <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
+ <div class="d-flex mt-3 mx-2  align-items-center cat-container">
+ <%= link_to category_path(cat), class:"nav-link"  do %> <img src =<%= cat.icon %> class= "icon" /> <% end%>
+<%= link_to category_path(cat), class:"nav-link"  do %>  <p class="text-primary mx-2"><%= cat.name%> </p> <% end%>
+<p class="text-info">$<%= cat.category_total %></p>
+ <p><%= button_to "Delete",  cat, method: :delete, class: 'btn btn-sm btn-danger mx-3'  %></p>
+    
+ <p><%= button_to "Edit",  cat, method: :put, class: 'btn btn-sm btn-secondary '  %></p>
+</div>
+
+</div>
+
+ <%end%>
+ <% else%>
+ <h3 class="text-info"> No categories added yet </h3>
+ <% end%>
+
+</div>
+</section>
